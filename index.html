@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-Évaluation Business Analyst - IIBA Cameroun</title>
+    <style>
+        :root {
+            --orange: #D86018;
+            --light-grey: #D0D3D4;
+            --dark-blue: #00313C;
+            --medium-blue: #00778B;
+            --white: #FFFFFF;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, var(--light-grey) 0%, var(--white) 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--medium-blue) 100%);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .assessment-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .assessment-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .assessment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--orange), var(--medium-blue));
+        }
+
+        .assessment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            border-color: var(--orange);
+        }
+
+        .assessment-card.active {
+            border-color: var(--orange);
+            background: linear-gradient(135deg, var(--white) 0%, #fef7f3 100%);
+        }
+
+        .card-title {
+            color: var(--dark-blue);
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        .card-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .card-features {
+            list-style: none;
+        }
+
+        .card-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-blue);
+        }
+
+        .card-features li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .quiz-container {
+            display: none;
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .quiz-container.active {
+            display: block;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--light-grey);
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--orange), var(--medium-blue));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .question-container {
+            margin-bottom: 2rem;
+        }
+
+        .question-title {
+            font-size: 1.2rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .question-category {
+            background: var(--orange);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .options-container {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .option {
+            background: #f8f9fa;
+            border: 2px solid var(--light-grey);
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .option:hover {
+            border-color: var(--orange);
+            background: #fef7f3;
+        }
+
+        .option.selected {
+            border-color: var(--orange);
+            background: linear-gradient(135deg, #fef7f3 0%, #fff 100%);
+            box-shadow: 0 3px 10px rgba(216, 96, 24, 0.2);
+        }
+
+        .option input[type="radio"] {
+            accent-color: var(--orange);
+            transform: scale(1.2);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--light-grey);
+        }
+
+        .btn {
+            background: var(--orange);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            background: #c55416;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(216, 96, 24, 0.3);
+        }
+
+        .btn:disabled {
+            background: var(--light-grey);
+            color: #999;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-secondary {
+            background: var(--medium-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--dark-blue);
+        }
+
+        .results-container {
+            display: none;
+            text-align: center;
+        }
+
+        .results-container.active {
+            display: block;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--orange), var(--medium-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem auto;
+            color: var(--white);
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .comparison-chart {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .chart-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .chart-label {
+            width: 120px;
+            text-align: right;
+            margin-right: 1rem;
+            font-weight: 600;
+            color: var(--dark-blue);
+        }
+
+        .chart-bar-fill {
+            height: 20px;
+            background: linear-gradient(90deg, var(--orange), var(--medium-blue));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .recommendations {
+            text-align: left;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .recommendations h3 {
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+        }
+
+        .recommendations ul {
+            list-style: none;
+        }
+
+        .recommendations li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+            color: #555;
+        }
+
+        .recommendations li::before {
+            content: '→';
+            color: var(--orange);
+            font-weight: bold;
+            margin-top: 0.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .assessment-selector {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .assessment-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Auto-Évaluation Business Analyst</h1>
+        <p>Évaluez vos compétences et comparez-vous aux standards IIBA Cameroun</p>
+		
+    </div>
+
+    <div class="container">
+        <!-- Sélecteur d'évaluation -->
+		<p  style="color:##055160; text-align: center;" >Si vous aimez, <a href="https://www.linkedin.com/company/iiba-cameroon-chapter" 
+     target="_blank" 
+     style="color:#F36F21; text-decoration:none;">likez nos posts sur LinkedIn</a> et partagez autour de vous en commençant par vos collègues</p>
+	 <br> 
+        <div id="assessment-selector" class="assessment-selector">
+            <div class="assessment-card" data-assessment="1">
+                <div class="card-title">
+                    <div class="card-icon">1</div>
+                    Profil BA Camerounais
+                </div>
+                <div class="card-description">
+                    Mesurez votre niveau et comparez-vous à la moyenne des Business Analysts camerounais selon les enquêtes IIBA Cameroun 2023-2024.
+                </div>
+                <ul class="card-features">
+                    <li>Comparaison avec la moyenne nationale</li>
+                    <li>Analyse par secteurs d'activité</li>
+                    <li>Évaluation des compétences locales</li>
+                    <li>Recommandations personnalisées</li>
+                </ul>
+            </div>
+
+            <div class="assessment-card" data-assessment="2">
+                <div class="card-title">
+                    <div class="card-icon">2</div>
+                    IIBA Adapté Cameroun
+                </div>
+                <div class="card-description">
+                    Questionnaire IIBA standard adapté au contexte camerounais, intégrant les spécificités locales et sectorielles.
+                </div>
+                <ul class="card-features">
+                    <li>Basé sur le BABOK v3</li>
+                    <li>Adapté au contexte local</li>
+                    <li>Secteurs économiques camerounais</li>
+                    <li>Outils disponibles localement</li>
+                </ul>
+            </div>
+
+            <div class="assessment-card" data-assessment="3">
+                <div class="card-title">
+                    <div class="card-icon">3</div>
+                    Mixte DISC + BABOK
+                </div>
+                <div class="card-description">
+                    Combinaison du test DISC, des compétences sous-jacentes BABOK v3 et du profil BA camerounais type.
+                </div>
+                <ul class="card-features">
+                    <li>Test de personnalité DISC</li>
+                    <li>Compétences sous-jacentes BABOK</li>
+                    <li>Alignement profil camerounais</li>
+                    <li>Recommandations holistiques</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Container pour les quiz -->
+        <div id="quiz-container" class="quiz-container">
+            <!-- Barre de progression -->
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+
+            <!-- Questions -->
+            <div id="question-container" class="question-container">
+                <!-- Questions seront injectées ici via JavaScript -->
+            </div>
+
+            <!-- Navigation -->
+            <div class="navigation">
+                <button id="prev-btn" class="btn btn-secondary" disabled>Précédent</button>
+                <div id="question-counter">Question 1 sur 20</div>
+                <button id="next-btn" class="btn">Suivant</button>
+            </div>
+        </div>
+
+        <!-- Container pour les résultats -->
+        <div id="results-container" class="results-container">
+            <h2>Vos Résultats</h2>
+            <h3 id="assessment-title"></h3>
+            <div id="score-circle" class="score-circle">75%</div>
+            
+            <div class="comparison-chart">
+                <h3>Comparaison avec la Moyenne Camerounaise</h3>
+                <div id="comparison-bars"></div>
+            </div>
+
+            <div class="recommendations">
+                <h3>Recommandations Personnalisées</h3>
+                <ul id="recommendations-list"></ul>
+            </div>
+			
+			<p style="color:##055160;">Si vous aimez, <a href="https://www.linkedin.com/company/iiba-cameroon-chapter" 
+     target="_blank" 
+     style="color:#F36F21; text-decoration:none;">likez nos posts sur LinkedIn</a> et partagez autour de vous en commençant par vos collègues</p>
+
+            <button id="restart-btn" class="btn">Refaire le Test</button>
+        </div>
+		
+    </div>
+
+    <script src="quiz-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
