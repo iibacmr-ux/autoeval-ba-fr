@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECBA® Practice Exam - 50 Authentic Questions</title>
+    <style>
+        :root {
+            --color-white: #ffffff;
+            --color-cream-50: #fcfcf9;
+            --color-gray-200: #f5f5f5;
+            --color-gray-300: #a7a9a9;
+            --color-slate-500: #626c71;
+            --color-brown-600: #5e5240;
+            --color-charcoal-700: #1f2121;
+            --color-charcoal-800: #262828;
+            --color-slate-900: #133c3b;
+            --color-teal-300: #32b8c6;
+            --color-teal-400: #2da6b2;
+            --color-teal-500: #218085;
+            --color-red-400: #ff5459;
+            --color-orange-500: #a84b2f;
+            --font-family-base: "Arial", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            background-color: var(--color-cream-50);
+            color: var(--color-slate-900);
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #133c3b 0%, #218085 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .exam-controls {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .exam-controls button {
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--color-teal-500);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-teal-400);
+        }
+
+        .btn-secondary {
+            background-color: var(--color-gray-200);
+            color: var(--color-slate-900);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-gray-300);
+        }
+
+        .btn-danger {
+            background-color: var(--color-red-400);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #ff3d42;
+        }
+
+        .timer {
+            background-color: var(--color-gray-200);
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--color-slate-900);
+        }
+
+        .timer.critical {
+            background-color: var(--color-red-400);
+            color: white;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .progress-section {
+            margin-bottom: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: var(--color-gray-200);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--color-teal-500);
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            color: var(--color-slate-500);
+        }
+
+        .question-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .question-number {
+            color: var(--color-teal-500);
+            font-weight: 600;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--color-slate-900);
+            line-height: 1.6;
+        }
+
+        .language-toggle {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            background-color: var(--color-gray-200);
+            padding: 4px;
+            border-radius: 6px;
+            width: fit-content;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            color: var(--color-slate-500);
+        }
+
+        .lang-btn.active {
+            background-color: white;
+            color: var(--color-teal-500);
+        }
+
+        .question-content {
+            margin-bottom: 20px;
+        }
+
+        .fr-content, .en-content {
+            display: none;
+        }
+
+        .fr-content.active, .en-content.active {
+            display: block;
+        }
+
+        .competency-tag {
+            display: inline-block;
+            background-color: var(--color-teal-300);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            padding: 16px;
+            border: 2px solid var(--color-gray-200);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+
+        .option:hover {
+            border-color: var(--color-teal-500);
+            background-color: var(--color-gray-200);
+        }
+
+        .option label {
+            cursor: pointer;
+            display: block;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 12px;
+            cursor: pointer;
+            accent-color: var(--color-teal-500);
+        }
+
+        .option.selected {
+            border-color: var(--color-teal-500);
+            background-color: rgba(33, 128, 133, 0.05);
+        }
+
+        .question-navigator {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+            gap: 8px;
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-item {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--color-gray-200);
+            background: white;
+            color: var(--color-slate-500);
+        }
+
+        .nav-item:hover {
+            border-color: var(--color-teal-500);
+            background-color: rgba(45, 166, 178, 0.1);
+        }
+
+        .nav-item.answered {
+            background-color: #22c55e;
+            color: white;
+            border-color: #22c55e;
+        }
+
+        .nav-item.answered:hover {
+            background-color: #16a34a;
+        }
+
+        .nav-item.current {
+            background-color: var(--color-teal-500);
+            color: white;
+            border-color: var(--color-teal-500);
+            box-shadow: 0 0 8px rgba(33, 128, 133, 0.3);
+        }
+
+        .results-section {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .score-display {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--color-teal-500);
+            margin: 20px 0;
+        }
+
+        .score-status {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .score-status.pass {
+            color: #22c55e;
+        }
+
+        .score-status.fail {
+            color: var(--color-red-400);
+        }
+
+        .results-language-toggle {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            background-color: var(--color-gray-200);
+            padding: 4px;
+            border-radius: 6px;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .results-lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            color: var(--color-slate-500);
+        }
+
+        .results-lang-btn.active {
+            background-color: white;
+            color: var(--color-teal-500);
+        }
+
+        .alert-critical-time {
+            background-color: #ffe6e6;
+            border-left: 4px solid var(--color-red-400);
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            color: var(--color-red-400);
+            font-weight: 600;
+        }
+
+        .results-nav-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .results-review-content {
+            display: none;
+        }
+
+        .results-review-content.active {
+            display: block;
+        }
+
+        .question-review.hidden {
+            display: none;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content h2 {
+            margin-bottom: 20px;
+            color: var(--color-slate-900);
+        }
+
+        .modal-content p {
+            margin-bottom: 20px;
+            color: var(--color-slate-500);
+            line-height: 1.6;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .review-question {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--color-slate-900);
+            font-size: 15px;
+        }
+
+        .review-answer {
+            font-size: 14px;
+            color: var(--color-slate-500);
+            margin-bottom: 16px;
+            line-height: 1.5;
+            padding-left: 8px;
+        }
+
+        .review-answer strong {
+            display: block;
+            color: var(--color-slate-900);
+            margin-bottom: 4px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .review-answer .answer-letter {
+            display: inline-block;
+            background-color: var(--color-teal-300);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-weight: 600;
+            margin-right: 6px;
+            font-size: 12px;
+        }
+
+        .review-answer .answer-letter.incorrect {
+            background-color: var(--color-red-400);
+            color: white;
+        }
+
+        .question-review {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 1px solid var(--color-gray-200);
+        }
+
+        .question-review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .question-review-title {
+            font-weight: 600;
+            color: var(--color-slate-900);
+            font-size: 15px;
+        }
+
+        .review-lang-toggle {
+            display: flex;
+            gap: 6px;
+            background-color: var(--color-gray-200);
+            padding: 3px;
+            border-radius: 4px;
+        }
+
+        .review-lang-btn {
+            padding: 4px 10px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            color: var(--color-slate-500);
+        }
+
+        .review-lang-btn.active {
+            background-color: white;
+            color: var(--color-teal-500);
+        }
+
+        .review-content {
+            display: none;
+        }
+
+        .review-content.active {
+            display: block;
+        }
+
+        .review-status {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .review-status.correct {
+            background-color: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+
+        .review-status.incorrect {
+            background-color: rgba(255, 84, 89, 0.2);
+            color: var(--color-red-400);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 20px;
+            }
+
+            .exam-controls {
+                flex-direction: column;
+            }
+
+            .question-container {
+                padding: 20px;
+            }
+
+            .nav-item {
+                width: 35px;
+                height: 35px;
+                font-size: 11px;
+            }
+
+            .results-language-toggle {
+                width: 100%;
+            }
+
+            .results-nav-buttons {
+                flex-direction: column;
+            }
+
+            .explanation {
+                padding: 12px;
+            }
+
+            .explanation h4 {
+                font-size: 11px;
+            }
+
+            .explanation p {
+                font-size: 12px;
+            }
+
+            .review-question {
+                font-size: 14px;
+            }
+
+            .review-answer {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ECBA® Practice Exam</h1>
+            <p>Entry Certificate in Business Analysis - 50 Authentic Bilingual Questions (75 minutes)</p>
+        </header>
+
+        <div id="examMode">
+            <div class="exam-controls">
+                <div class="timer" id="timer">Time: 75:00</div>
+                <div id="criticalTimeAlert" class="alert-critical-time hidden">⏰ Temps critique ! Moins de 5 minutes / Critical time! Less than 5 minutes</div>
+                <div style="flex: 1;"></div>
+                <button class="btn-secondary" id="pauseBtn" onclick="togglePause()">Pause</button>
+                <button class="btn-danger" id="submitBtn" onclick="submitExam()">Submit Exam</button>
+            </div>
+
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+                <div class="progress-text">
+                    Question <span id="currentQuestion">1</span> of <span id="totalQuestions">50</span>
+                </div>
+            </div>
+
+            <div class="question-navigator" id="questionNavigator"></div>
+
+            <div class="question-container">
+                <div class="question-number" id="questionNum">Question 1 of 50</div>
+                
+                <div class="language-toggle">
+                    <button class="lang-btn active" id="frBtn" onclick="switchLanguage('fr')">Français</button>
+                    <button class="lang-btn" id="enBtn" onclick="switchLanguage('en')">English</button>
+                </div>
+
+                <div class="competency-tag" id="competencyTag"></div>
+
+                <div class="question-content">
+                    <div class="fr-content active" id="frQuestion"></div>
+                    <div class="en-content" id="enQuestion"></div>
+                </div>
+
+                <div class="options" id="optionsContainer"></div>
+
+                <div class="navigation">
+                    <button class="nav-btn nav-btn-prev" id="prevBtn" onclick="previousQuestion()">← Previous</button>
+                    <button class="nav-btn nav-btn-next" id="nextBtn" onclick="nextQuestion()">Next →</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-section" id="resultsSection">
+            <div class="results-header">
+                <h2 id="resultsTitle">Exam Results</h2>
+                
+                <div class="results-language-toggle">
+                    <button class="results-lang-btn active" id="resultsFrBtn" onclick="switchResultsLanguage('fr')">Français</button>
+                    <button class="results-lang-btn" id="resultsEnBtn" onclick="switchResultsLanguage('en')">English</button>
+                </div>
+
+                <div class="score-status" id="scoreStatus"></div>
+                <div class="score-display" id="scoreDisplay">0%</div>
+                <p id="scoreMessage"></p>
+            </div>
+
+            <div class="results-nav-buttons">
+                <button class="btn-primary" onclick="resetExam()">Take Another Test / Faire un autre test</button>
+                <button class="btn-secondary" onclick="goHome()">Home / Accueil</button>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <h3 id="reviewTitle" style="margin-bottom: 20px; font-size: 18px;">Review Your Answers</h3>
+                <div id="reviewContainer"></div>
+            </div>
+        </div>
+
+        <div class="modal" id="timeoutModal">
+            <div class="modal-content">
+                <h2>Time's Up! / Temps écoulé !</h2>
+                <p>Your exam time has expired. Your answers will be submitted automatically. / Votre temps d'examen a expiré. Vos réponses seront soumises automatiquement.</p>
+                <div class="modal-buttons">
+                    <button class="btn-primary" onclick="closeModal('timeoutModal'); confirmSubmit();">View Results / Voir les résultats</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="confirmModal">
+            <div class="modal-content">
+                <h2>Submit Exam? / Soumettre l'examen ?</h2>
+                <p>You answered <span id="answeredCount">0</span> of 50 questions. <span id="unansweredWarning" class="hidden">You have <span id="unansweredCount">0</span> unanswered questions.</span> Are you sure you want to submit? / Vous avez répondu à <span id="answeredCountFr">0</span> questions sur 50. <span id="unansweredWarningFr" class="hidden">Vous avez <span id="unansweredCountFr">0</span> questions sans réponse.</span> Êtes-vous sûr de vouloir soumettre ?</p>
+                <div class="modal-buttons">
+                    <button class="btn-secondary" onclick="closeModal('confirmModal');">Continue / Continuer</button>
+                    <button class="btn-primary" onclick="closeModal('confirmModal'); confirmSubmit();">Submit / Soumettre</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // AUTHENTIC ECBA Questions (50 questions - Full Bilingual)
+        const questions = [
+            // Q1-10: Competency-based situational questions
+            {
+                id: 1,
+                competency: "Organizational Knowledge",
+                fr: "Vous êtes chargé de mettre en œuvre un changement de processus dans un département. Quelle connaissance organisationnelle est la plus critique pour le succès ?",
+                en: "You are asked to implement a process change in a department. What organizational knowledge is most critical to success?",
+                options: [
+                    { letter: "A", fr: "Connaître les objectifs du département, la culture et les processus de changement internes", en: "Knowing departmental goals, culture, and internal change processes" },
+                    { letter: "B", fr: "Comprendre les tendances internationales du marché", en: "Understanding international market trends" },
+                    { letter: "C", fr: "Être familier avec les processus de changement des concurrents", en: "Familiarity with competitors' change processes" },
+                    { letter: "D", fr: "La culture organisationnelle pour savoir ce qui sera ou ne sera pas accepté", en: "Organizational culture to know what will or will not be accepted" }
+                ],
+                correct: "A",
+                explanation: {
+                    fr: "La connaissance organisationnelle inclut la compréhension de la structure, de la culture et de la dynamique interne pour faciliter le changement réussi. BABOK 9.3.3",
+                    en: "Organizational knowledge includes understanding structure, culture, and internal dynamics to facilitate successful change. BABOK 9.3.3"
+                }
+            },
+            {
+                id: 2,
+                competency: "Visual Thinking",
+                fr: "Comment un analyste métier peut-il simplifier les exigences complexes pour les parties prenantes ?",
+                en: "How can a BA simplify complex requirements for stakeholders?",
+                options: [
+                    { letter: "A", fr: "Utiliser une documentation textuelle détaillée pour assurer que toutes les exigences sont considérées", en: "Use detailed textual documentation to ensure all requirements are considered" },
+                    { letter: "B", fr: "Créer des diagrammes, graphiques et modèles pour une meilleure compréhension", en: "Create diagrams, graphs, and models for better understanding" },
+                    { letter: "C", fr: "Créer une liste d'exigences et les grouper dans un tableur par différentes catégories", en: "Create a list of requirements and group them in a spreadsheet by various categories" },
+                    { letter: "D", fr: "Résumer les informations dans un e-mail pour un aperçu de haut niveau", en: "Summarize the information in an email for a high-level overview" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "La pensée visuelle améliore la compréhension en utilisant des modèles et des diagrammes. BABOK 9.1.7",
+                    en: "Visual thinking enhances understanding using models and diagrams. BABOK 9.1.7"
+                }
+            },
+            {
+                id: 3,
+                competency: "Conflict Resolution",
+                fr: "Deux parties prenantes demandent des fonctionnalités conflictuelles. Que devrait faire l'analyste métier ?",
+                en: "Two stakeholders request conflicting features. What should the BA do?",
+                options: [
+                    { letter: "A", fr: "Choisir l'une au hasard en tirant au sort", en: "Pick one randomly, drawing out of a hat" },
+                    { letter: "B", fr: "Négocier en fonction de la valeur, de l'impact et de la faisabilité", en: "Negotiate based on value, impact, and feasibility" },
+                    { letter: "C", fr: "Éviter de prendre une décision et laisser le sponsor décider", en: "Avoid making a decision and let the sponsor decide" },
+                    { letter: "D", fr: "Rejeter les deux idées pour que personne ne gagne", en: "Reject both ideas so no one wins" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "La résolution de conflits implique une négociation basée sur les objectifs. BABOK 9.5.4",
+                    en: "Conflict resolution involves objective-driven negotiation. BABOK 9.5.4"
+                }
+            },
+            {
+                id: 4,
+                competency: "Solution Knowledge",
+                fr: "Lorsque vous documentez les modifications apportées à un système CRM, qu'est-ce qui est clé ?",
+                en: "When documenting changes to a CRM system, what's key?",
+                options: [
+                    { letter: "A", fr: "Connaître les subtilités des connexions utilisateur", en: "Knowing the intricacies of user logins" },
+                    { letter: "B", fr: "Mener une analyse d'impact et une validation des exigences", en: "Conduct an impact analysis and requirements validation" },
+                    { letter: "C", fr: "Connaître le fonctionnement technique du système", en: "Knowing how the system technically operates" },
+                    { letter: "D", fr: "Consulter le marketing sur ce qui est important", en: "Consult marketing about what is important" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "La connaissance de la solution soutient l'analyse d'impact et la validation des exigences. BABOK 9.3.4",
+                    en: "Solution knowledge supports impact analysis and requirements validation. BABOK 9.3.4"
+                }
+            },
+            {
+                id: 5,
+                competency: "Ethical Behavior",
+                fr: "On vous demande de falsifier un rapport. Quelle est votre réponse ?",
+                en: "You're asked to falsify a report. What's your response?",
+                options: [
+                    { letter: "A", fr: "Vous refusez et signalez la violation éthique selon la politique éthique", en: "You refuse and report the ethics violation per the ethics policy" },
+                    { letter: "B", fr: "Vous acceptez tranquillement et gardez cela confidentiel", en: "You agree quietly and keep it confidential" },
+                    { letter: "C", fr: "Vous le faites, mais notez votre désaccord au demandeur", en: "You do it, but note your dissent to the requester" },
+                    { letter: "D", fr: "Vous retardez l'action jusqu'à ce que vous ayez le temps d'y penser", en: "You delay action until you have time to think about it" }
+                ],
+                correct: "A",
+                explanation: {
+                    fr: "Le comportement éthique exige l'intégrité et le respect des normes. BABOK 9.2.1",
+                    en: "Ethical behavior requires integrity and adherence to standards. BABOK 9.2.1"
+                }
+            },
+            {
+                id: 6,
+                competency: "BA Tools Knowledge",
+                fr: "Vous devez créer un diagramme de flux de données. Quelle action est la meilleure ?",
+                en: "You need to create a data flow diagram. Which action is best?",
+                options: [
+                    { letter: "A", fr: "Utiliser un outil de modélisation BA avec des modèles DFD", en: "Use a BA modeling tool with DFD templates" },
+                    { letter: "B", fr: "Le dessiner à main levée sur papier", en: "Draw it freehand on paper" },
+                    { letter: "C", fr: "Le dessiner dans PowerPoint ou Word", en: "Draw it in PowerPoint or Word" },
+                    { letter: "D", fr: "Demander aux designers ou développeurs de le faire", en: "Ask designers or developers to do it" }
+                ],
+                correct: "A",
+                explanation: {
+                    fr: "Les outils BA améliorent la précision et la clarté de la modélisation. BABOK 9.25",
+                    en: "BA tools enhance precision and clarity in analysis modeling. BABOK 9.25"
+                }
+            },
+            {
+                id: 7,
+                competency: "Non-verbal Communication",
+                fr: "Une partie prenante semble désengagée dans une réunion. Qu'est-ce qui pourrait aider ?",
+                en: "A stakeholder appears disengaged in a meeting. What might help?",
+                options: [
+                    { letter: "A", fr: "Observez et ajustez votre ton et votre contact visuel", en: "Observe and adjust your tone and eye contact" },
+                    { letter: "B", fr: "Ignorez-les, mais gardez tout le monde d'autre engagé", en: "Ignore them, but keep everyone else engaged" },
+                    { letter: "C", fr: "Concluez plus tôt, car ils pourraient simplement s'ennuyer", en: "Conclude early, as they might just be bored" },
+                    { letter: "D", fr: "Appelez-les et faites-les au centre de l'attention", en: "Call on them and make them the center of attention" }
+                ],
+                correct: "A",
+                explanation: {
+                    fr: "La conscience non-verbale améliore l'efficacité de la communication. BABOK 9.4.2",
+                    en: "Non-verbal awareness enhances communication effectiveness. BABOK 9.4.2"
+                }
+            },
+            {
+                id: 8,
+                competency: "Risk Management",
+                fr: "Avant de lancer un nouveau système, comment un analyste métier peut-il se préparer aux événements négatifs potentiels ?",
+                en: "Before launching a new system, how can a BA prepare for potential negative events?",
+                options: [
+                    { letter: "A", fr: "Mener une analyse des parties prenantes pour identifier les problèmes potentiels", en: "Conduct a stakeholder analysis to identify potential issues" },
+                    { letter: "B", fr: "Évaluer l'état actuel du processus pour les gaspillages", en: "Assess the current state of the process for waste" },
+                    { letter: "C", fr: "Mener une analyse des risques et définir les plans d'atténuation", en: "Conduct risk analysis and define mitigation plans" },
+                    { letter: "D", fr: "Mener une analyse des causes profondes pour identifier la cause première de l'événement négatif", en: "Conduct a root cause analysis to identify the primary cause of the negative event" }
+                ],
+                correct: "C",
+                explanation: {
+                    fr: "L'analyse des risques anticipe les incertitudes et prépare les réponses. BABOK 10.38",
+                    en: "Risk analysis anticipates uncertainties and prepares responses to them. BABOK 10.38"
+                }
+            },
+            {
+                id: 9,
+                competency: "Strategic Analysis",
+                fr: "Une entreprise envisage d'entrer sur un nouveau marché. Quelle analyse aide à explorer une position stratégique ?",
+                en: "A company is evaluating entering a new market. What analysis helps explore a strategic position?",
+                options: [
+                    { letter: "A", fr: "SWOT", en: "SWOT" },
+                    { letter: "B", fr: "Récits utilisateur", en: "User stories" },
+                    { letter: "C", fr: "Maquettes", en: "Wireframes" },
+                    { letter: "D", fr: "Ateliers", en: "Workshops" }
+                ],
+                correct: "A",
+                explanation: {
+                    fr: "L'analyse SWOT identifie les forces, faiblesses, opportunités et menaces. BABOK 10.46",
+                    en: "SWOT identifies strengths, weaknesses, opportunities, and threats. BABOK 10.46"
+                }
+            },
+            {
+                id: 10,
+                competency: "Systems Thinking",
+                fr: "Vous examinez l'impact d'une modification sur un système de vente. Qu'est-ce que vous devez considérer ?",
+                en: "You're reviewing the impact of a change to a sales system. What should you consider?",
+                options: [
+                    { letter: "A", fr: "Évaluer les impacts sur les différentes interfaces", en: "Review the impacts on the various interfaces" },
+                    { letter: "B", fr: "Les impacts sur tous les systèmes et processus intégrés", en: "The impacts on all integrated systems and processes" },
+                    { letter: "C", fr: "Analyser les impacts du projet sur le temps, le coût, la qualité et l'étendue", en: "Analyze the project's impacts on time, cost, quality, and scope" },
+                    { letter: "D", fr: "Ignorer et procéder, car la direction devrait connaître les impacts", en: "Ignore and proceed, given that management should know the impacts" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "La pensée systémique évalue comment les composants interagissent dans l'ensemble du système. BABOK 9.1.5",
+                    en: "Systems thinking evaluates how components interact in the whole system. BABOK 9.1.5"
+                }
+            },
+            // Q11-20: Advanced Competencies
+            {
+                id: 11,
+                competency: "Accountability",
+                fr: "Un livrable est en retard par rapport au calendrier. Quelle est une action responsable ?",
+                en: "A deliverable is behind schedule. What is a responsible action?",
+                options: [
+                    { letter: "A", fr: "Blâmer les autres pour ne pas faire leur travail ou être lent", en: "Blame others for not doing their job or being slow" },
+                    { letter: "B", fr: "Communiquer de manière proactive l'état et réaffecter les priorités", en: "Proactively communicate the status and reprioritize the work" },
+                    { letter: "C", fr: "Ignorer jusqu'à ce qu'on te le demande, la direction s'en fout de toute façon", en: "Ignore until asked, management doesn't care anyway" },
+                    { letter: "D", fr: "Demander du travail supplémentaire aux autres pour rattraper le retard", en: "Request overtime for others to help get back on track" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "L'accountability signifie posséder les résultats et prendre l'initiative. BABOK 9.2.2",
+                    en: "Accountability means owning outcomes and taking initiative. BABOK 9.2.2"
+                }
+            },
+            {
+                id: 12,
+                competency: "Elicitation Techniques",
+                fr: "Vous avez besoin de commentaires détaillés d'un expert du domaine. Quelle technique est la meilleure ?",
+                en: "You need detailed feedback from a subject matter expert. What technique is best?",
+                options: [
+                    { letter: "A", fr: "Atelier", en: "Workshop" },
+                    { letter: "B", fr: "Observation", en: "Observation" },
+                    { letter: "C", fr: "Entrevue", en: "Interview" },
+                    { letter: "D", fr: "Jeu collaboratif", en: "Collaborative game" }
+                ],
+                correct: "C",
+                explanation: {
+                    fr: "Les entrevues extraient des informations par le dialogue direct. BABOK 10.25",
+                    en: "Interviews elicit information through direct dialogue. BABOK 10.25"
+                }
+            },
+            {
+                id: 13,
+                competency: "Requirements Definition",
+                fr: "Qu'est-ce qui aide à définir le besoin d'un utilisateur, incluant pourquoi il en a besoin ?",
+                en: "What technique helps define a user's need, including why they need it?",
+                options: [
+                    { letter: "A", fr: "Récits utilisateur", en: "User Stories" },
+                    { letter: "B", fr: "Une exigence de partie prenante", en: "A stakeholder requirement" },
+                    { letter: "C", fr: "Une exigence fonctionnelle", en: "A functional requirement" },
+                    { letter: "D", fr: "Une règle métier", en: "A business rule" }
+                ],
+                correct: "A",
+                explanation: {
+                    fr: "Les récits utilisateur capturent qui a un besoin, ce qu'il essaie d'accomplir et pourquoi. BABOK 10.48",
+                    en: "User stories are brief statements that capture who has a need, what the user is trying to accomplish, and why. BABOK 10.48"
+                }
+            },
+            {
+                id: 14,
+                competency: "Leadership",
+                fr: "Vous voulez comprendre les lignes de rapport et l'influence au sein d'une division. Quelle technique devez-vous utiliser ?",
+                en: "You want to understand reporting lines and influence across a division. Which technique should you use?",
+                options: [
+                    { letter: "A", fr: "Modélisation des données", en: "Data modeling" },
+                    { letter: "B", fr: "Modélisation organisationnelle", en: "Organizational modeling" },
+                    { letter: "C", fr: "Ateliers", en: "Workshops" },
+                    { letter: "D", fr: "Cartographie des parties prenantes", en: "Stakeholder map" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "La modélisation organisationnelle identifie la hiérarchie, les rôles et les relations. BABOK 10.32",
+                    en: "Organizational modeling identifies hierarchy, roles, and relationships. BABOK 10.32"
+                }
+            },
+            {
+                id: 15,
+                competency: "Business Acumen",
+                fr: "Pour ajouter de la valeur, qu'un analyste métier doit-il comprendre ?",
+                en: "To add value, what must the BA understand?",
+                options: [
+                    { letter: "A", fr: "Spécifications techniques et conception", en: "Technical specs and design" },
+                    { letter: "B", fr: "Analyse financière", en: "Financial analysis" },
+                    { letter: "C", fr: "Tactiques concurrentes", en: "Competitor tactics" },
+                    { letter: "D", fr: "Les objectifs et objectifs commerciaux", en: "Business goals and objectives" }
+                ],
+                correct: "D",
+                explanation: {
+                    fr: "L'acumen commercial lie l'analyse à la valeur commerciale. BABOK 9.3.1",
+                    en: "Business acumen links analysis to business value. BABOK 9.3.1"
+                }
+            },
+            {
+                id: 16,
+                competency: "Teaching & Mentoring",
+                fr: "Un analyste métier junior ne connaît pas les outils de modélisation. Comment devez-vous l'aider ?",
+                en: "A junior BA is unfamiliar with modeling tools. How should you help?",
+                options: [
+                    { letter: "A", fr: "L'envoyer à une formation", en: "Send them to a class" },
+                    { letter: "B", fr: "Utiliser l'outil vous-même car c'est plus rapide", en: "Use the tool yourself because it is faster" },
+                    { letter: "C", fr: "Lui dire d'apprendre par lui-même", en: "Tell them to learn it themselves" },
+                    { letter: "D", fr: "Le guider en utilisant des exemples clairs et des commentaires", en: "Guide them using clear examples and feedback" }
+                ],
+                correct: "D",
+                explanation: {
+                    fr: "L'enseignement implique de guider les autres par le soutien et l'instruction. BABOK 9.5.5",
+                    en: "Teaching involves guiding others through support and instruction. BABOK 9.5.5"
+                }
+            },
+            {
+                id: 17,
+                competency: "Time Management",
+                fr: "Vous équilibrez plusieurs réunions de parties prenantes. Quelle est la meilleure approche ?",
+                en: "You're balancing multiple stakeholder meetings. What's the best approach?",
+                options: [
+                    { letter: "A", fr: "Annulez toutes les réunions et demandez aux gens de vous envoyer un e-mail s'ils ont des questions", en: "Cancel all the meetings and ask people to email you if they have questions" },
+                    { letter: "B", fr: "Utiliser des outils de planification et prioriser les réunions", en: "Use scheduling tools and prioritize the meetings" },
+                    { letter: "C", fr: "Travailler des heures supplémentaires pour terminer toutes les tâches qui doivent être faites", en: "Work overtime to complete all tasks that need to be done" },
+                    { letter: "D", fr: "Ignorer les demandes de réunion, vous n'avez pas le temps", en: "Ignore meeting requests, you don't have time" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "Les analystes métier efficaces gèrent le temps et les priorités concurrentes. BABOK 9.2.4",
+                    en: "Effective BAs manage time and competing priorities efficiently. BABOK 9.2.4"
+                }
+            },
+            {
+                id: 18,
+                competency: "Influence & Negotiation",
+                fr: "Une partie prenante résiste à un changement valide. Qu'un analyste métier peut-il faire ?",
+                en: "A stakeholder resists a valid change. What can the BA do?",
+                options: [
+                    { letter: "A", fr: "Écarter leurs préoccupations et obtenir le consentement de la majorité", en: "Dismiss their concerns and get the majority to buy in" },
+                    { letter: "B", fr: "Utiliser l'influence pour gagner l'alignement par les objectifs communs", en: "Use influence to gain alignment through shared goals" },
+                    { letter: "C", fr: "Escalader le problème vers le sponsor ou le conseil PMO", en: "Escalate the issue to the sponsor or PMO board" },
+                    { letter: "D", fr: "Éviter de discuter avec la partie prenante, car cela pourrait causer un conflit", en: "Avoid discussing this with the stakeholder, as it may cause conflict" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "L'influence crée le consensus et motive l'alignement. BABOK 9.5.2",
+                    en: "Influence builds consensus and motivates alignment. BABOK 9.5.2"
+                }
+            },
+            {
+                id: 19,
+                competency: "Integrity & Transparency",
+                fr: "Vous découvrez un risque de projet sensible. Que devez-vous faire ?",
+                en: "You uncover a sensitive project risk. What should you do?",
+                options: [
+                    { letter: "A", fr: "L'ignorer, il peut disparaître", en: "Ignore it, it may go away" },
+                    { letter: "B", fr: "En parler à d'autres et obtenir leur avis", en: "Tell others about the risk and get their input" },
+                    { letter: "C", fr: "Le documenter et l'escalader selon le protocole", en: "Document and escalate it per protocol" },
+                    { letter: "D", fr: "Minimiser le problème comme pas important", en: "Downplay the issue as not a big deal" }
+                ],
+                correct: "C",
+                explanation: {
+                    fr: "Maintenir la confiance exige l'intégrité et la divulgation responsable. BABOK 9.2.3",
+                    en: "Maintaining trust requires integrity and responsible disclosure. BABOK 9.2.3"
+                }
+            },
+            {
+                id: 20,
+                competency: "Brainstorming",
+                fr: "L'équipe a besoin de nouvelles idées pour résoudre un goulot d'étranglement complexe du flux de travail. Quelle technique soutient le mieux cela ?",
+                en: "The team needs new ideas to solve a complex workflow bottleneck. What technique best supports this?",
+                options: [
+                    { letter: "A", fr: "Mener plusieurs entrevues avec les parties prenantes clés", en: "Conduct multiple interviews with key stakeholders" },
+                    { letter: "B", fr: "Tenir des séances de remue-méninges structurées", en: "Hold structured brainstorming sessions" },
+                    { letter: "C", fr: "Envoyer des enquêtes individuelles et collecter les données", en: "Send out individual surveys and collect the data" },
+                    { letter: "D", fr: "Mener un groupe de discussion avec des clients clés", en: "Conduct a focus group with key customers" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "Le brainstorming génère des idées créatives par la pensée collaborative. BABOK 10.5",
+                    en: "Brainstorming generates creative ideas through collaborative thinking. BABOK 10.5"
+                }
+            },
+            // Q21-30: Requirements & Analysis Techniques
+            {
+                id: 21,
+                competency: "Creative Thinking",
+                fr: "L'équipe est bloquée en utilisant des approches traditionnelles. Comment un analyste métier peut-il encourager l'innovation ?",
+                en: "The team is stuck using traditional approaches. How can the BA encourage innovation?",
+                options: [
+                    { letter: "A", fr: "Initier une séance de brainstorming avec de nouvelles méthodes", en: "Initiate a brainstorming session with new methods" },
+                    { letter: "B", fr: "Demander l'approbation du client ou du sponsor d'abord", en: "Ask the client or sponsor for approval first" },
+                    { letter: "C", fr: "Encourager l'équipe à revisiter les anciennes approches, car elles ont fait leurs preuves", en: "Encourage the team to revisit old approaches, as they have proven to be tried and true" },
+                    { letter: "D", fr: "Demander un financement supplémentaire pour plus de formation sur d'autres approches", en: "Request additional funding for more training on other approaches" }
+                ],
+                correct: "A",
+                explanation: {
+                    fr: "La pensée créative utilise des techniques non traditionnelles comme le brainstorming. BABOK 9.1.1",
+                    en: "Creative thinking uses non-traditional techniques like brainstorming to find new solutions. BABOK 9.1.1"
+                }
+            },
+            {
+                id: 22,
+                competency: "Lessons Learned",
+                fr: "Après l'achèvement du projet, l'équipe se réunit pour discuter de ce qui s'est bien passé et de ce qui pourrait être amélioré. Quelles techniques utiliseriez-vous ?",
+                en: "After project completion, the team meets to discuss what went well and what could be improved. What techniques would you use?",
+                options: [
+                    { letter: "A", fr: "Brainstorming", en: "Brainstorming" },
+                    { letter: "B", fr: "Analyse des risques", en: "Risk analysis" },
+                    { letter: "C", fr: "Analyse des causes profondes", en: "Root cause analysis" },
+                    { letter: "D", fr: "Leçons apprises", en: "Lesson learned" }
+                ],
+                correct: "D",
+                explanation: {
+                    fr: "Les leçons apprises reflètent sur les résultats pour améliorer les performances futures. BABOK 10.27",
+                    en: "Lessons learned reflect on outcomes to improve future performance. BABOK 10.27"
+                }
+            },
+            {
+                id: 23,
+                competency: "Clear Communication",
+                fr: "Comment un analyste métier peut-il garantir la clarté dans la documentation des exigences ?",
+                en: "How can a BA ensure clarity in requirements documentation?",
+                options: [
+                    { letter: "A", fr: "Utiliser des paragraphes longs", en: "Use long paragraphs" },
+                    { letter: "B", fr: "Écrire de manière concise avec une terminologie cohérente", en: "Write concisely with consistent terminology" },
+                    { letter: "C", fr: "Inclure autant d'acronymes que possible", en: "Include as many acronyms as possible" },
+                    { letter: "D", fr: "Reformater la documentation pour la rendre amusante", en: "Reformat the documentation to make it fun" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "La communication écrite claire assure la compréhension des parties prenantes. BABOK 9.4.3",
+                    en: "Clear written communication ensures stakeholder understanding. BABOK 9.4.3"
+                }
+            },
+            {
+                id: 24,
+                competency: "Active Listening",
+                fr: "Lors d'une entrevue, une partie prenante donne des indices subtils sur son insatisfaction. Comment l'analyste métier devrait-il réagir ?",
+                en: "During an interview, a stakeholder gives subtle clues about their dissatisfaction. How should the BA respond?",
+                options: [
+                    { letter: "A", fr: "S'en tenir à vos questions préparées et éviter les distractions", en: "Stick to your prepared questions and avoid distractions" },
+                    { letter: "B", fr: "Ignorer les indices non-verbaux, car vous pourriez les mal interpréter", en: "Ignore non-verbal cues, as you are likely misinterpreting them" },
+                    { letter: "C", fr: "Reconnaître les indices et poser des questions de clarification plus approfondies", en: "Acknowledge the cues and probe deeper with clarifying questions" },
+                    { letter: "D", fr: "Les appeler sur leur comportement non-verbal", en: "Call them out on their non-verbal behavior" }
+                ],
+                correct: "C",
+                explanation: {
+                    fr: "L'écoute efficace inclut des techniques actives et réflexives. BABOK 9.4.4",
+                    en: "Effective listening includes active and reflective techniques. BABOK 9.4.4"
+                }
+            },
+            {
+                id: 25,
+                competency: "Process Analysis",
+                fr: "Comment un analyste métier peut-il identifier les redondances dans un flux de travail de processus ?",
+                en: "How can a BA identify redundancies in a process workflow?",
+                options: [
+                    { letter: "A", fr: "Écrire des récits utilisateur", en: "Write user stories" },
+                    { letter: "B", fr: "Mener une analyse de processus", en: "Conduct process analysis" },
+                    { letter: "C", fr: "Envoyer des enquêtes", en: "Send out surveys" },
+                    { letter: "D", fr: "Examiner les écrans d'interface utilisateur", en: "Review UI screens" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "L'analyse de processus aide à évaluer les performances et à identifier les zones d'amélioration. BABOK 10.34",
+                    en: "Process analysis helps evaluate performance and identify areas for improvement. BABOK 10.34"
+                }
+            },
+            {
+                id: 26,
+                competency: "Data Modeling",
+                fr: "Vous capturez les relations de données entre les données client et commande. Quelle technique est la plus utile ?",
+                en: "You're capturing data relationships between customer and order data. What technique is most useful?",
+                options: [
+                    { letter: "A", fr: "Modélisation de processus", en: "Process modeling" },
+                    { letter: "B", fr: "Modélisation organisationnelle", en: "Organizational modeling" },
+                    { letter: "C", fr: "Modélisation des données, comme la diagramme de relations d'entités", en: "Data modeling, such as entity relationship diagramming" },
+                    { letter: "D", fr: "Diagramme de flux de données", en: "Data flow diagram" }
+                ],
+                correct: "C",
+                explanation: {
+                    fr: "La modélisation des données définit la structure et les relations entre les éléments de données. BABOK 10.15",
+                    en: "Data modeling defines the structure and relationships between data elements. BABOK 10.15"
+                }
+            },
+            {
+                id: 27,
+                competency: "Problem Solving",
+                fr: "Une nouvelle exigence cause un conflit. Quelle est la meilleure réponse de l'analyste métier ?",
+                en: "A new requirement causes conflict. What is the BA's best response?",
+                options: [
+                    { letter: "A", fr: "Ignorer le conflit et espérer qu'il disparaisse", en: "Ignore the conflict and hope it will go away" },
+                    { letter: "B", fr: "Escalader le conflit à la gestion senior pour qu'elle le résout", en: "Escalate the conflict to senior management for them to resolve" },
+                    { letter: "C", fr: "Analyser la cause profonde du conflit et proposer des solutions de compromis", en: "Analyze the root cause of the conflict and propose compromise solutions" },
+                    { letter: "D", fr: "Recommander d'annuler l'exigence et d'implémenter les exigences convenues", en: "Recommend cancelling the requirement and implementing the agreed-upon requirements" }
+                ],
+                correct: "C",
+                explanation: {
+                    fr: "La résolution de problèmes implique d'identifier les causes profondes et de générer des solutions équilibrées. BABOK 9.1.4",
+                    en: "Problem solving involves identifying root causes and generating balanced solutions. BABOK 9.1.4"
+                }
+            },
+            {
+                id: 28,
+                competency: "Stakeholder Engagement",
+                fr: "Qu'est-ce qui crée du rapport avec les parties prenantes ?",
+                en: "What builds rapport with stakeholders?",
+                options: [
+                    { letter: "A", fr: "Construire la confiance et écouter les voix les plus fortes dans la salle", en: "Build trust and listen to the louder voices in the room" },
+                    { letter: "B", fr: "L'engagement et l'empathie dans le dialogue", en: "Engaging dialogue and empathy with stakeholders" },
+                    { letter: "C", fr: "Choisir quelques parties prenantes favorisées pour fournir des commentaires", en: "Pick only a few favored stakeholders to provide feedback" },
+                    { letter: "D", fr: "Limiter le contact pour qu'ils ne vous connaissent bien", en: "Limiting contact so they don't get to know you well" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "Les compétences en interaction favorisent la collaboration et la confiance. BABOK 9.5",
+                    en: "Interaction skills foster collaboration and trust. BABOK 9.5"
+                }
+            },
+            {
+                id: 29,
+                competency: "Presentation Skills",
+                fr: "Vous présentez aux cadres. Que devriez-vous faire ?",
+                en: "You're presenting to executives. What should you do?",
+                options: [
+                    { letter: "A", fr: "Utiliser le jargon technique et les acronymes pour qu'ils supposent que vous êtes familier", en: "Use technical jargon and acronyms so they assume you are familiar with the material" },
+                    { letter: "B", fr: "Parler clairement, avoir des diapositives succinctes ou une documentation et relier les idées aux objectifs commerciaux", en: "Speak clearly, have succinct slides or documentation, and relate ideas to business goals" },
+                    { letter: "C", fr: "Lire les diapositives mot par mot pour assurer que vous ne oubliez aucune information critique", en: "Read slides word-for-word to make sure you don't forget any critical information" },
+                    { letter: "D", fr: "Les cadres n'ont pas beaucoup de temps, donc parlez rapidement pour économiser du temps", en: "Executives don't have much time, so talk quickly to save time" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "Les compétences verbales adaptent la messagerie aux besoins du public. BABOK 9.4.1",
+                    en: "Verbal skills adjust messaging to audience needs. BABOK 9.4.1"
+                }
+            },
+            {
+                id: 30,
+                competency: "Collaborative Games",
+                fr: "Pour engager les parties prenantes et générer une compréhension partagée des caractéristiques de la solution, quelle technique fonctionnerait le mieux ?",
+                en: "To engage stakeholders and generate shared understanding of solution features, what technique would work best?",
+                options: [
+                    { letter: "A", fr: "Jeux collaboratifs comme Product Box", en: "Collaborative games like Product Box" },
+                    { letter: "B", fr: "Examen de la documentation du contrat légal", en: "Legal contract documentation review" },
+                    { letter: "C", fr: "Analyse du processus de l'état actuel", en: "Current state process analysis" },
+                    { letter: "D", fr: "Brainstorming avec des parties prenantes clés", en: "Brainstorming with key stakeholders" }
+                ],
+                correct: "A",
+                explanation: {
+                    fr: "Les jeux collaboratifs favorisent la créativité et l'alignement. BABOK 10.10",
+                    en: "Collaborative games promote creativity and alignment. BABOK 10.10"
+                }
+            },
+            // Q31-40: Advanced Techniques
+            {
+                id: 31,
+                competency: "Learning Mindset",
+                fr: "Une nouvelle réglementation impacte le domaine du projet. Que devrait faire l'analyste métier ?",
+                en: "A new regulation impacts the project domain. What should the BA do?",
+                options: [
+                    { letter: "A", fr: "L'ignorer à moins que la gestion le soulève", en: "Ignore it unless management raises it" },
+                    { letter: "B", fr: "Faire des recherches et mettre à jour l'ensemble des exigences en conséquence", en: "Research and update the requirement set accordingly" },
+                    { letter: "C", fr: "Demander à l'équipe technique et aux testeurs de l'incorporer", en: "Ask the technical team and tester to incorporate it" },
+                    { letter: "D", fr: "La laisser pour que le juridique ou la conformité la résole", en: "Leave it for legal or compliance to resolve" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "Une mentalité d'apprentissage permet aux analystes métier de comprendre proactivement les nouvelles informations. BABOK 9.1.3",
+                    en: "A learning mindset enables BAs to proactively understand new information. BABOK 9.1.3"
+                }
+            },
+            {
+                id: 32,
+                competency: "Scope Modeling",
+                fr: "Quelle technique peut clarifier ce qui est inclus et exclu du domaine d'une version et aider à fournir la transparence de ces limites ?",
+                en: "What technique can clarify what's in and out of scope for a release and help provide transparency of those boundaries?",
+                options: [
+                    { letter: "A", fr: "Analyse SWOT pour découvrir les menaces et les opportunités", en: "SWOT analysis to discover threats and opportunities" },
+                    { letter: "B", fr: "Modélisation des limites avec des diagrammes de contexte", en: "Scope modeling with context diagrams" },
+                    { letter: "C", fr: "Jeux collaboratifs pour aider les parties prenantes à discuter de ce qui est inclus et exclu du domaine", en: "Collaborative games to help stakeholders discuss what is in and out of scope" },
+                    { letter: "D", fr: "Brainstorming avec les parties prenantes clés pour clarifier les limites du domaine", en: "Brainstorming with key stakeholders to clarify scope boundaries" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "La modélisation des limites clarifie les frontières et les interactions du système. BABOK 10.41",
+                    en: "Scope modeling clarifies system boundaries and interactions. BABOK 10.41"
+                }
+            },
+            {
+                id: 33,
+                competency: "KPI Measurement",
+                fr: "Comment un analyste métier peut-il mesurer le succès d'une initiative d'amélioration de processus ?",
+                en: "How can a BA measure the success of a process improvement initiative?",
+                options: [
+                    { letter: "A", fr: "Examiner la qualité du code", en: "Review code quality" },
+                    { letter: "B", fr: "Collecter des récits utilisateur", en: "Collect user stories" },
+                    { letter: "C", fr: "Suivre les métriques et les indicateurs clés de performance", en: "Track metrics and key performance indicators" },
+                    { letter: "D", fr: "Compter les séances de brainstorming", en: "Count brainstorming sessions" }
+                ],
+                correct: "C",
+                explanation: {
+                    fr: "Les KPIs mesurent les résultats et l'efficacité. BABOK 10.28",
+                    en: "KPIs measure outcomes and effectiveness. BABOK 10.28"
+                }
+            },
+            {
+                id: 34,
+                competency: "Issue Tracking",
+                fr: "Vous devez suivre les problèmes dans un grand ensemble d'exigences. Que devriez-vous utiliser ?",
+                en: "You need to track issues across a large set of requirements. What should you use?",
+                options: [
+                    { letter: "A", fr: "Utiliser des notes adhésives sur votre moniteur pour vous rappeler les problèmes", en: "Use sticky notes on your monitor to remind you of the issues" },
+                    { letter: "B", fr: "Utiliser un tableur ou un outil de gestion des tâches qui offre le filtrage et le tri", en: "Use a spreadsheet or task management tool that offers filtering and sorting capabilities" },
+                    { letter: "C", fr: "Demander à d'autres de vous rappeler si vous oubliez un problème", en: "Ask others to remind you if you forget an issue" },
+                    { letter: "D", fr: "Garder tout dans des e-mails individuels et les mettre dans un dossier de fichiers séparé", en: "Keep everything in individual emails and put them in a separate file folder" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "La compétence dans les outils de bureau soutient le suivi organisé et transparent. BABOK - Extension",
+                    en: "Proficiency in office tools supports organized and transparent tracking. BABOK - Extension"
+                }
+            },
+            {
+                id: 35,
+                competency: "Tool Effectiveness",
+                fr: "Comment un analyste métier peut-il maximiser l'efficacité des outils ?",
+                en: "How does a BA maximize tool effectiveness?",
+                options: [
+                    { letter: "A", fr: "Utiliser uniquement les fonctions familières", en: "Use only the familiar functions" },
+                    { letter: "B", fr: "Éviter d'apprendre de nouvelles fonctions que vous n'avez pas le temps", en: "Avoid learning new tools and functions you don't have the time" },
+                    { letter: "C", fr: "S'appuyer sur les processus manuels car c'est plus rapide", en: "Rely on manual processes it is faster anyway" },
+                    { letter: "D", fr: "Exploiter pleinement les fonctionnalités des outils pour améliorer l'analyse", en: "Fully leverage tool features to improve analysis" }
+                ],
+                correct: "D",
+                explanation: {
+                    fr: "L'utilisation compétente des outils améliore la précision et la productivité. BABOK 9.25",
+                    en: "Proficient tool use improves accuracy and productivity. BABOK 9.25"
+                }
+            },
+            {
+                id: 36,
+                competency: "Requirements Decomposition",
+                fr: "Un projet a des exigences incomplètes et des délais serrés. Que devrait faire un analyste métier d'abord ?",
+                en: "A project has incomplete requirements and tight deadlines. What should a BA do first?",
+                options: [
+                    { letter: "A", fr: "Attendre que toutes les exigences soient prêtes avant de procéder", en: "Wait for all requirements before proceeding" },
+                    { letter: "B", fr: "Demander aux développeurs de faire des hypothèses", en: "Ask developers to make assumptions" },
+                    { letter: "C", fr: "Décomposer et analyser les exigences connues", en: "Break down and analyze the known requirements" },
+                    { letter: "D", fr: "Escalader au sponsor du projet immédiatement", en: "Escalate to the project sponsor immediately" }
+                ],
+                correct: "C",
+                explanation: {
+                    fr: "La décomposition et l'analyse des exigences incomplètes aident à avancer avec des entrées limitées. BABOK 9.1",
+                    en: "Decomposing and analyzing incomplete requirements helps move forward with limited input. BABOK 9.1"
+                }
+            },
+            {
+                id: 37,
+                competency: "Business Rules Analysis",
+                fr: "Vous devez identifier et valider les principes d'exploitation et les contraintes auto-imposées de l'entreprise pour assurer la réalisation de la valeur. Quelle technique aide ?",
+                en: "You need to identify and validate the business's operating principles and self-imposed constraints to ensure value is realized. Which technique helps?",
+                options: [
+                    { letter: "A", fr: "Examiner les récits utilisateur", en: "Review the user stories" },
+                    { letter: "B", fr: "Mener une analyse des règles métier", en: "Perform business rules analysis" },
+                    { letter: "C", fr: "Utiliser le dictionnaire de données", en: "Use the data dictionary" },
+                    { letter: "D", fr: "Définir les KPIs du projet", en: "Define project KPIs" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "L'analyse des règles métier identifie, valide, raffine et organise les règles métier. BABOK 10.9",
+                    en: "Business rules analysis identifies, validates, refines, and organizes business rules that guide behavior and ensure the rules are followed and value is not compromised. BABOK 10.9"
+                }
+            },
+            {
+                id: 38,
+                competency: "Root Cause Analysis",
+                fr: "Les plaintes des clients concernant les retards d'expédition augmentent. Comment un analyste métier peut-il identifier la cause ?",
+                en: "Customer complaints about shipping delays are increasing. How can a BA identify the cause?",
+                options: [
+                    { letter: "A", fr: "Envoyer une enquête de satisfaction aux clients", en: "Send a satisfaction survey to the customers" },
+                    { letter: "B", fr: "Organiser un groupe de discussion avec des clients clés pour obtenir leurs commentaires", en: "Run a focus group with key customers to get their feedback" },
+                    { letter: "C", fr: "Mener une analyse SWOT pour identifier les forces et les faiblesses", en: "Conduct a SWOT analysis to identify strengths and weaknesses" },
+                    { letter: "D", fr: "Utiliser l'analyse des causes profondes pour identifier les zones qui peuvent contribuer au problème", en: "Use root cause analysis to identify areas that may be contributing to the issue" }
+                ],
+                correct: "D",
+                explanation: {
+                    fr: "L'analyse des causes profondes découvre les problèmes sous-jacents derrière les symptômes. BABOK 10.40",
+                    en: "Root cause analysis uncovers the underlying issues behind symptoms. BABOK 10.40"
+                }
+            },
+            {
+                id: 39,
+                competency: "Document Analysis",
+                fr: "Vous examinez le manuel utilisateur d'un système existant pour obtenir des informations. Quelle technique utilisez-vous ?",
+                en: "You are reviewing the user manual for an existing system to gain insight. What technique are you using?",
+                options: [
+                    { letter: "A", fr: "Enquêtes", en: "Surveys" },
+                    { letter: "B", fr: "Analyse des documents", en: "Document analysis" },
+                    { letter: "C", fr: "Benchmarking", en: "Benchmarking" },
+                    { letter: "D", fr: "Maquettes", en: "Wireframing" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "L'analyse de documents extrait des données utiles à partir de matériaux existants. BABOK 10.18",
+                    en: "Document analysis extracts useful data from existing materials. BABOK 10.18"
+                }
+            },
+            {
+                id: 40,
+                competency: "Business Capability Analysis",
+                fr: "Qu'un analyste métier devrait-il utiliser pour évaluer ce que l'entreprise est actuellement capable de faire ?",
+                en: "What should a BA use to assess what the business is currently able to do?",
+                options: [
+                    { letter: "A", fr: "Construire des personas de parties prenantes pour les rôles utilisateur clés", en: "Build stakeholder personas for key user roles" },
+                    { letter: "B", fr: "Analyser les processus de l'état actuel", en: "Analyze current state processes" },
+                    { letter: "C", fr: "Cartographier les capacités métier actuelles et futures", en: "Map current and future business capabilities" },
+                    { letter: "D", fr: "Examiner la documentation des leçons apprises", en: "Review the lessons learned documentation" }
+                ],
+                correct: "C",
+                explanation: {
+                    fr: "L'analyse de capacité métier définit les capacités nécessaires pour atteindre les objectifs. BABOK 10.6",
+                    en: "Business capability analysis defines the capabilities needed to meet objectives. BABOK 10.6"
+                }
+            },
+            // Q41-50: Final Advanced Scenarios
+            {
+                id: 41,
+                competency: "Decision Making",
+                fr: "Face à deux solutions viables, qu'un analyste métier devrait-il d'abord considérer ?",
+                en: "Faced with two viable solutions, what should a BA consider first?",
+                options: [
+                    { letter: "A", fr: "Sélectionner la solution la plus rentable pour économiser de l'argent à l'organisation", en: "Select the most cost-effective solution to save the organization money" },
+                    { letter: "B", fr: "Retarder la décision jusqu'à ce que le sponsor ou PM décide", en: "Delay the decision until the sponsor or PM decides" },
+                    { letter: "C", fr: "Comparer les solutions par rapport aux objectifs métier pour déterminer la meilleure option", en: "Compare solutions against business objectives to determine the best option" },
+                    { letter: "D", fr: "Choisir celui que le sponsor préfère", en: "Pick the one the sponsor prefers" }
+                ],
+                correct: "C",
+                explanation: {
+                    fr: "La prise de décision efficace pèse les options par rapport aux objectifs clairement définis. BABOK 9.1.2",
+                    en: "Effective decision-making weighs options against clearly defined objectives. BABOK 9.1.2"
+                }
+            },
+            {
+                id: 42,
+                competency: "Teamwork & Collaboration",
+                fr: "Les membres de l'équipe ne sont pas d'accord sur une solution. Quel est le rôle de l'analyste métier ?",
+                en: "Team members disagree on a solution. What is the BA's role?",
+                options: [
+                    { letter: "A", fr: "Choisir la solution indépendamment", en: "Choose the solution independently" },
+                    { letter: "B", fr: "Obtenir l'avis des développeurs et incorporer leurs suggestions", en: "Obtain the developers input and incorporate their suggestions" },
+                    { letter: "C", fr: "Faciliter la discussion pour atteindre un consensus", en: "Facilitate discussion to achieve consensus" },
+                    { letter: "D", fr: "Ignorer le conflit et pousser à travers de toute façon", en: "Ignore the conflict and push through anyway" }
+                ],
+                correct: "C",
+                explanation: {
+                    fr: "Le travail d'équipe inclut la collaboration et la gestion des conflits. BABOK 9.5.3",
+                    en: "Teamwork includes collaboration and managing conflict. BABOK 9.5.3"
+                }
+            },
+            {
+                id: 43,
+                competency: "Adaptability",
+                fr: "Un changement de domaine soudain affecte votre travail. Quelle est votre réponse ?",
+                en: "A sudden scope change affects your work. What's your response?",
+                options: [
+                    { letter: "A", fr: "Se plaindre du changement et rallier d'autres à votre cause", en: "Complain about the change and get others on board" },
+                    { letter: "B", fr: "Refuser de continuer jusqu'à ce que le domaine se solidifie", en: "Refuse to continue until the scope solidifies" },
+                    { letter: "C", fr: "Adapter vos plans et réévaluer les priorités au besoin", en: "Adapt your plans and reassess priorities as needed" },
+                    { letter: "D", fr: "Demander à être retiré du projet", en: "Request to be taken off the project" }
+                ],
+                correct: "C",
+                explanation: {
+                    fr: "L'adaptabilité consiste à réagir positivement au changement. BABOK 9.2.5",
+                    en: "Adaptability is about responding positively to change. BABOK 9.2.5"
+                }
+            },
+            {
+                id: 44,
+                competency: "Stakeholder Mapping",
+                fr: "Comment un analyste métier peut-il assurer qu'aucune partie prenante importante n'est oubliée ?",
+                en: "How can a BA ensure no important stakeholder is missed?",
+                options: [
+                    { letter: "A", fr: "Se concentrer sur les utilisateurs finaux du processus ou du système", en: "Focus on end users of the process or system" },
+                    { letter: "B", fr: "Créer une liste ou une cartographie des parties prenantes pour assurer que tous les rôles pertinents sont capturés", en: "Build a stakeholder list or map to ensure all relevant roles are captured" },
+                    { letter: "C", fr: "Analyser le processus pour identifier tous les parties prenantes clés", en: "Analyze the process to identify all key stakeholders" },
+                    { letter: "D", fr: "Envoyer un appel à tous à la demande de parties prenantes pour un projet particulier", en: "Send an email blast out asking for stakeholders for a particular project" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "La cartographie des parties prenantes assure que tous les rôles pertinents sont considérés. BABOK 10.43",
+                    en: "Stakeholder mapping ensures all relevant roles are considered. BABOK 10.43"
+                }
+            },
+            {
+                id: 45,
+                competency: "Workshop Facilitation",
+                fr: "Vous voulez un consensus sur les caractéristiques de la solution d'un groupe de parties prenantes diversifiées. Quelle technique est la meilleure ?",
+                en: "You want consensus on solution features from a diverse stakeholder group. What technique is best?",
+                options: [
+                    { letter: "A", fr: "Entrevues individuelles", en: "Individual interviews" },
+                    { letter: "B", fr: "Simulation de processus", en: "Process simulation" },
+                    { letter: "C", fr: "Atelier facilité", en: "Facilitated workshop" },
+                    { letter: "D", fr: "Enquête par e-mail", en: "Email survey" }
+                ],
+                correct: "C",
+                explanation: {
+                    fr: "Les ateliers soutiennent la collaboration structurée pour l'alignement et la prise de décision. BABOK 10.50",
+                    en: "Workshops support structured collaboration for alignment and decision-making. BABOK 10.50"
+                }
+            },
+            {
+                id: 46,
+                competency: "Conceptual Thinking",
+                fr: "Vous définissez une nouvelle idée de produit. Qu'est-ce qui devrait être mis en avant ?",
+                en: "You're defining a new product idea. What should be emphasized?",
+                options: [
+                    { letter: "A", fr: "Les détails au niveau du code pour que tout le monde connaisse les détails minuscules", en: "Code-level detail so everyone knows the minute details" },
+                    { letter: "B", fr: "Interface utilisateur et maquettes de rapport", en: "User interface and report mockups" },
+                    { letter: "C", fr: "Risques du projet et impacts", en: "Project risks and impacts" },
+                    { letter: "D", fr: "Modèles abstraits de haut niveau qui lient les idées à la stratégie", en: "High-level abstract models that link ideas to strategy" }
+                ],
+                correct: "D",
+                explanation: {
+                    fr: "La pensée conceptuelle soutient l'abstraction et la liaison des idées à la stratégie. BABOK 9.1.6",
+                    en: "Conceptual thinking supports abstraction and linking ideas to strategy. BABOK 9.1.6"
+                }
+            },
+            {
+                id: 47,
+                competency: "Agile Methodology",
+                fr: "Votre projet utilise Agile. Comment l'analyse devrait-elle être menée ?",
+                en: "Your project uses Agile. How should analysis be performed?",
+                options: [
+                    { letter: "A", fr: "Créer un BRD complet d'avance pour être examiné et au classement des parties prenantes", en: "Create a full BRD up front to be reviewed by the stakeholders and baselined" },
+                    { letter: "B", fr: "Utiliser une approche hybride pour continuer à effectuer le travail d'analyse métier comme avant", en: "Use a hybrid approach to continue performing business analysis work as before" },
+                    { letter: "C", fr: "Utiliser des approches adaptatives pour le travail BA", en: "Use adaptive approaches to BA work" },
+                    { letter: "D", fr: "Suivre une approche prévisionnelle car elle est familière à tous", en: "Follow a predictive approach, as it is familiar to everyone" }
+                ],
+                correct: "C",
+                explanation: {
+                    fr: "La connaissance de la méthodologie adapte les pratiques BA à la méthode de livraison. BABOK 9.3.5",
+                    en: "Methodology knowledge adapts BA practices to the delivery method. BABOK 9.3.5"
+                }
+            },
+            {
+                id: 48,
+                competency: "Remote Communication",
+                fr: "Votre équipe est distante et asynchrone. Comment pouvez-vous assurer l'alignement ?",
+                en: "Your team is remote and asynchronous. How can you ensure alignment?",
+                options: [
+                    { letter: "A", fr: "Attendre les appels hebdomadaires et discuter de tout problème d'alignement", en: "Wait for weekly calls and discuss any issues in alignment" },
+                    { letter: "B", fr: "Utiliser les outils collaboratifs qui offrent la documentation partagée et le chat", en: "Utilize collaborative tools that feature shared documentation and chat" },
+                    { letter: "C", fr: "Envoyer des e-mails et demander s'il y a des problèmes", en: "Send emails and ask if there are any issues" },
+                    { letter: "D", fr: "Éviter les mises à jour fréquentes pour minimiser la confusion", en: "Avoid frequent updates to minimize confusion" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "Les outils de communication aident à assurer la compréhension partagée et la collaboration opportune. BABOK - Extension",
+                    en: "Communication tools help ensure shared understanding and timely collaboration. BABOK - Extension"
+                }
+            },
+            {
+                id: 49,
+                competency: "Backlog Management",
+                fr: "Vous travaillez dans une équipe Agile gérant des priorités changeantes. Quelle technique vous aide à maintenir la transparence et l'ordre ?",
+                en: "You are working in an Agile team managing changing priorities. What technique helps you maintain transparency and order?",
+                options: [
+                    { letter: "A", fr: "Utiliser un diagramme de Gantt", en: "Use a Gantt chart" },
+                    { letter: "B", fr: "Maintenir et affiner un backlog de produit", en: "Maintain and refine a product backlog" },
+                    { letter: "C", fr: "Collecter les leçons apprises à la fin du projet", en: "Collect lessons learned at the end of the project" },
+                    { letter: "D", fr: "Exécuter des simulations de risque financier", en: "Run financial risk simulations" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "La gestion du backlog soutient la priorisation transparente et le raffinement des livrables. BABOK 10.2",
+                    en: "Backlog management supports transparent prioritization and refinement of deliverables. BABOK 10.2"
+                }
+            },
+            {
+                id: 50,
+                competency: "Industry Knowledge",
+                fr: "Comment un analyste métier peut-il adapter l'analyse pour la santé ?",
+                en: "How can a BA tailor an analysis for healthcare?",
+                options: [
+                    { letter: "A", fr: "Utiliser le jargon commercial et informatique général car ils sont les mêmes", en: "Use general business and IT terms because they are the same" },
+                    { letter: "B", fr: "Appliquer la réglementation spécifique au secteur et la langue", en: "Apply sector-specific regulations and language" },
+                    { letter: "C", fr: "Compter sur les parties prenantes pour traduire les différences", en: "Rely on stakeholders to translate the differences" },
+                    { letter: "D", fr: "La connaissance du secteur n'est pas importante, alors ignorez-la", en: "Industry knowledge is not important, so ignore it" }
+                ],
+                correct: "B",
+                explanation: {
+                    fr: "La connaissance spécifique à l'industrie améliore la pertinence et la précision. BABOK 9.3.2",
+                    en: "Industry-specific knowledge improves relevancy and accuracy. BABOK 9.3.2"
+                }
+            }
+        ];
+
+        let currentQuestion = 0;
+        let answers = {};
+        let timerInterval;
+        let timeRemaining = 75 * 60;
+        let paused = false;
+        let resultsLanguage = 'fr';
+
+        function initExam() {
+            renderQuestion();
+            renderNavigator();
+            startTimer();
+        }
+
+        function renderQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('questionNum').textContent = `Question ${q.id} of ${questions.length}`;
+            document.getElementById('currentQuestion').textContent = q.id;
+            document.getElementById('competencyTag').textContent = q.competency;
+            document.getElementById('frQuestion').innerHTML = `<p class="question-text">${q.fr}</p>`;
+            document.getElementById('enQuestion').innerHTML = `<p class="question-text">${q.en}</p>`;
+
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            q.options.forEach(opt => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                if (answers[currentQuestion] === opt.letter) optionDiv.classList.add('selected');
+                
+                const isActiveLang = document.getElementById('frBtn').classList.contains('active');
+                const optionText = isActiveLang ? opt.fr : opt.en;
+                
+                optionDiv.innerHTML = `
+                    <label class="option-text">
+                        <input type="radio" name="answer" value="${opt.letter}" ${answers[currentQuestion] === opt.letter ? 'checked' : ''} onchange="selectAnswer('${opt.letter}')">
+                        <span class="option-letter">${opt.letter})</span>
+                        <span id="lang-${opt.letter}" class="option-content">${optionText}</span>
+                    </label>
+                `;
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            updateProgressBar();
+            updateNavigationButtons();
+        }
+
+        function selectAnswer(letter) {
+            answers[currentQuestion] = letter;
+            renderQuestion();
+            renderNavigator();
+        }
+
+        function switchLanguage(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(lang + 'Btn').classList.add('active');
+
+            document.querySelectorAll('.fr-content, .en-content').forEach(el => el.classList.remove('active'));
+            if (lang === 'fr') {
+                document.querySelectorAll('.fr-content').forEach(el => el.classList.add('active'));
+            } else {
+                document.querySelectorAll('.en-content').forEach(el => el.classList.add('active'));
+            }
+
+            const q = questions[currentQuestion];
+            q.options.forEach(opt => {
+                const langSpan = document.getElementById('lang-' + opt.letter);
+                if (langSpan) {
+                    langSpan.textContent = lang === 'fr' ? opt.fr : opt.en;
+                }
+            });
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                renderQuestion();
+            }
+        }
+
+        function renderNavigator() {
+            const navigator = document.getElementById('questionNavigator');
+            navigator.innerHTML = '';
+            questions.forEach((q, idx) => {
+                const item = document.createElement('button');
+                item.className = 'nav-item';
+                if (idx === currentQuestion) item.classList.add('current');
+                if (answers[idx] !== undefined) item.classList.add('answered');
+                item.textContent = q.id;
+                item.onclick = (e) => { 
+                    e.preventDefault();
+                    currentQuestion = idx; 
+                    renderQuestion();
+                    renderNavigator();
+                };
+                navigator.appendChild(item);
+            });
+        }
+
+        function updateProgressBar() {
+            const answered = Object.keys(answers).length;
+            const percentage = (answered / questions.length) * 100;
+            document.getElementById('progressFill').style.width = percentage + '%';
+        }
+
+        function updateNavigationButtons() {
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            document.getElementById('nextBtn').disabled = currentQuestion === questions.length - 1;
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                if (!paused) {
+                    timeRemaining--;
+                    updateTimer();
+                    if (timeRemaining <= 0) {
+                        clearInterval(timerInterval);
+                        openModal('timeoutModal');
+                    }
+                }
+            }, 1000);
+        }
+
+        function updateTimer() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            const timerEl = document.getElementById('timer');
+            timerEl.textContent = `Time: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            
+            const criticalAlert = document.getElementById('criticalTimeAlert');
+            if (timeRemaining < 300 && timeRemaining > 0) {
+                timerEl.classList.add('critical');
+                criticalAlert.classList.remove('hidden');
+            } else {
+                timerEl.classList.remove('critical');
+                criticalAlert.classList.add('hidden');
+            }
+        }
+
+        function togglePause() {
+            paused = !paused;
+            document.getElementById('pauseBtn').textContent = paused ? 'Resume' : 'Pause';
+        }
+
+        function submitExam() {
+            const answered = Object.keys(answers).length;
+            const unanswered = questions.length - answered;
+            document.getElementById('answeredCount').textContent = answered;
+            document.getElementById('answeredCountFr').textContent = answered;
+            document.getElementById('unansweredCount').textContent = unanswered;
+            document.getElementById('unansweredCountFr').textContent = unanswered;
+            
+            if (unanswered > 0) {
+                document.getElementById('unansweredWarning').classList.remove('hidden');
+                document.getElementById('unansweredWarningFr').classList.remove('hidden');
+            } else {
+                document.getElementById('unansweredWarning').classList.add('hidden');
+                document.getElementById('unansweredWarningFr').classList.add('hidden');
+            }
+            openModal('confirmModal');
+        }
+
+        function confirmSubmit() {
+            showResults();
+        }
+
+        function switchResultsLanguage(lang) {
+            resultsLanguage = lang;
+            document.querySelectorAll('.results-lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('results' + (lang === 'fr' ? 'Fr' : 'En') + 'Btn').classList.add('active');
+            
+            document.getElementById('resultsTitle').textContent = lang === 'fr' ? 'Résultats de l\'examen' : 'Exam Results';
+            document.getElementById('reviewTitle').textContent = lang === 'fr' ? 'Examinez vos réponses' : 'Review Your Answers';
+            
+            renderReviewContent(lang);
+        }
+
+        function renderReviewContent(lang) {
+            const reviewContainer = document.getElementById('reviewContainer');
+            reviewContainer.innerHTML = '';
+            
+            questions.forEach((q, idx) => {
+                const userAnswer = answers[idx];
+                const isCorrect = userAnswer === q.correct;
+                const reviewDiv = document.createElement('div');
+                reviewDiv.className = 'question-review';
+                
+                const questionTextFr = q.fr;
+                const questionTextEn = q.en;
+                const userAnswerLetter = userAnswer || '—';
+                const userAnswerTextFr = userAnswer ? q.options.find(o => o.letter === userAnswer).fr : 'Non répondu';
+                const userAnswerTextEn = userAnswer ? q.options.find(o => o.letter === userAnswer).en : 'Not answered';
+                const correctAnswerLetter = q.correct;
+                const correctAnswerTextFr = q.options.find(o => o.letter === q.correct).fr;
+                const correctAnswerTextEn = q.options.find(o => o.letter === q.correct).en;
+                const explanationTextFr = q.explanation.fr;
+                const explanationTextEn = q.explanation.en;
+                const incorrectClass = !isCorrect ? 'incorrect' : '';
+                const competency = q.competency;
+                
+                reviewDiv.innerHTML = `
+                    <div class="question-review-header">
+                        <div class="question-review-title">Question ${q.id}</div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <span style="display: inline-block; background-color: var(--color-teal-300); color: white; padding: 3px 8px; border-radius: 3px; font-size: 10px; font-weight: 600;">${competency}</span>
+                            <div class="review-lang-toggle">
+                                <button class="review-lang-btn active" onclick="switchQuestionLang(this, ${idx}, 'fr')">FR</button>
+                                <button class="review-lang-btn" onclick="switchQuestionLang(this, ${idx}, 'en')">EN</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="review-content active" data-question="${idx}" data-lang="fr">
+                        <div style="margin-bottom: 15px; padding: 12px; background-color: var(--color-gray-200); border-radius: 4px; border-left: 3px solid var(--color-teal-500);">
+                            <p style="margin: 0; font-size: 14px; color: var(--color-slate-900); line-height: 1.5;">${questionTextFr}</p>
+                        </div>
+                        <div class="review-answer">
+                            <strong>Votre réponse :</strong>
+                            <span class="answer-letter">${userAnswerLetter}</span>${userAnswerTextFr}
+                        </div>
+                        <div class="review-answer">
+                            <strong>Réponse correcte :</strong>
+                            <span class="answer-letter ${incorrectClass}">${correctAnswerLetter}</span>${correctAnswerTextFr}
+                        </div>
+                        <span class="review-status ${isCorrect ? 'correct' : 'incorrect'}">${isCorrect ? '✓ CORRECT' : '✗ INCORRECT'}</span>
+                        <div class="explanation">
+                            <h4>Explication</h4>
+                            <p>${explanationTextFr}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="review-content" data-question="${idx}" data-lang="en">
+                        <div style="margin-bottom: 15px; padding: 12px; background-color: var(--color-gray-200); border-radius: 4px; border-left: 3px solid var(--color-teal-500);">
+                            <p style="margin: 0; font-size: 14px; color: var(--color-slate-900); line-height: 1.5;">${questionTextEn}</p>
+                        </div>
+                        <div class="review-answer">
+                            <strong>Your answer:</strong>
+                            <span class="answer-letter">${userAnswerLetter}</span>${userAnswerTextEn}
+                        </div>
+                        <div class="review-answer">
+                            <strong>Correct answer:</strong>
+                            <span class="answer-letter ${incorrectClass}">${correctAnswerLetter}</span>${correctAnswerTextEn}
+                        </div>
+                        <span class="review-status ${isCorrect ? 'correct' : 'incorrect'}">${isCorrect ? '✓ CORRECT' : '✗ INCORRECT'}</span>
+                        <div class="explanation">
+                            <h4>Explanation</h4>
+                            <p>${explanationTextEn}</p>
+                        </div>
+                    </div>
+                `;
+                reviewContainer.appendChild(reviewDiv);
+            });
+        }
+
+        function switchQuestionLang(btn, questionIdx, lang) {
+            // Update active button
+            const toggleContainer = btn.parentElement;
+            toggleContainer.querySelectorAll('.review-lang-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Update content visibility
+            const reviewContents = document.querySelectorAll(`.review-content[data-question="${questionIdx}"]`);
+            reviewContents.forEach(content => content.classList.remove('active'));
+            document.querySelector(`.review-content[data-question="${questionIdx}"][data-lang="${lang}"]`).classList.add('active');
+        }
+
+        function showResults() {
+            clearInterval(timerInterval);
+            document.getElementById('examMode').style.display = 'none';
+            document.getElementById('resultsSection').classList.add('active');
+            window.scrollTo(0, 0);
+
+            let correct = 0;
+            questions.forEach((q, idx) => {
+                if (answers[idx] === q.correct) correct++;
+            });
+
+            const percentage = Math.round((correct / questions.length) * 100);
+            document.getElementById('scoreDisplay').textContent = percentage + '%';
+            
+            const scoreStatus = document.getElementById('scoreStatus');
+            if (percentage >= 60) {
+                scoreStatus.textContent = percentage >= 80 ? 'EXCELLENT PASS ✓ / EXCELLENT RÉUSSI ✓' : 'PASS ✓ / RÉUSSI ✓';
+                scoreStatus.classList.add('pass');
+                scoreStatus.classList.remove('fail');
+                document.getElementById('scoreMessage').textContent = 
+                    `Congratulations! You passed with ${correct}/${questions.length} correct answers. / Félicitations ! Vous avez réussi avec ${correct}/${questions.length} réponses correctes.`;
+            } else {
+                scoreStatus.textContent = 'NEEDS IMPROVEMENT / BESOIN D\'AMÉLIORATION';
+                scoreStatus.classList.add('fail');
+                scoreStatus.classList.remove('pass');
+                document.getElementById('scoreMessage').textContent = 
+                    `You scored ${correct}/${questions.length}. Study the explanations and try again! / Vous avez obtenu ${correct}/${questions.length}. Étudiez les explications et réessayez !`;
+            }
+
+            renderReviewContent('fr');
+        }
+
+        function resetExam() {
+            location.reload();
+        }
+
+        function goHome() {
+            if (confirm('Êtes-vous sûr de vouloir quitter l\'examen ? / Are you sure you want to leave the exam?')) {
+                window.history.back();
+            }
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        initExam();
+    </script>
+</body>
+</html>
